@@ -1,0 +1,1007 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Decentralized Bank.">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@instadapp" />
+<meta name="twitter:title" content="InstaBorrow">
+<meta name="twitter:description" content="Instant Loan on Blockchain ">
+<meta name="twitter:image" content="https://instadapp.io/img/makertemp.png">
+
+<meta property="og:url" content="https://instadapp.io/" />
+<meta property="og:title" content="InstaBorrow" />
+<meta property="og:description" content="Instant Loan on Blockchain" />
+<meta property="og:image" content="https://instadapp.io/img/makertemp.png" />
+
+<link href="img/logo.png" rel="shortcut icon" type="image/x-icon">
+<link href="img/logo.png" rel="apple-touch-icon-precomposed">
+<link id="favicon" rel="icon" type="image/png" href="img/logo.png">
+
+<!-- Libs CSS -->
+<link rel="stylesheet" href="fonts/feather/feather.min.css">
+<link rel="stylesheet" href="libs/highlight.js/styles/vs2015.css">
+<link rel="stylesheet" href="libs/quill/dist/quill.core.css">
+<link rel="stylesheet" href="libs/select2/dist/css/select2.min.css">
+<link rel="stylesheet" href="libs/flatpickr/dist/flatpickr.min.css">
+
+<!-- Theme CSS -->
+<link rel="stylesheet" href="css/theme.min.css">
+<link rel="stylesheet" href="css/app.v4.css">
+<script>var colorScheme = 'light';</script>
+<script src="libs/jquery/dist/jquery.min.js"></script>
+<title>InstaDApp - InstaBorrow</title>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light" id="sidebar">
+    <div class="container-fluid">
+
+        <!-- Brand -->
+        <h1 class="header-title display-4 text-center font-weight-bold my-3">
+            <a href="/" class="defaultLink">
+                <img src="img/logotext.png" alt="..." class="" style="height:43px;"> <span class="mt--4 ml--4 badge badge-primary" style="font-size:12px;">beta</span>
+            </a>
+        </h1>
+
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="sidebarCollapse">
+
+            <hr class="navbar-divider my-3">
+        
+            <!-- Navigation -->
+            <ul class="navbar-nav">
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="/dapp/borrow">
+                        <i class="fe fe-aperture"></i> Borrow
+                        
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dapp/swap">
+                        <i class="fe fe-activity"></i> Swap
+                        
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Divider -->
+            <hr class="navbar-divider my-3">
+
+            <!-- Navigation -->
+            <ul class="navbar-nav mb-md-4">
+                <li class="nav-item">
+                    <a class="nav-link " href="/cdp/leverage">
+                        <i class="fe fe-repeat"></i> Leverage CDP
+                    </a>
+                </li>
+            </ul>
+        
+            <!-- Push content down -->
+            <div class="mt-auto">
+                <div class="navbar-user d-none d-md-flex" id="sidebarUser">
+                    <div class="btn active font-weight-bold btn-primary" style="width:150px;" onclick="emailModal();">
+                        Stay in the loop
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- / .navbar-collapse -->
+
+    </div>
+</nav>
+        <!-- ethereum client modal -->
+<div class="modal fade commonModal" id="ethClientModal" tabindex="-1" role="dialog" aria-labelledby="ethClientModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="ethClientModalTitle">Connect Ethereum Wallet</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- popAlert -->
+<div class="modal fade" id="popAlert" tabindex="-1" role="dialog" aria-labelledby="popAlertTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="padding:18px 24px;">
+                <h3 class="modal-title" id="popAlertTitle" style="font-size:24px;">...</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="font-size:24px;">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="popAlertBody">
+                ...
+            </div>
+            <div class="modal-footer" id="popAlertBtnCov"> 
+                <div id="popAlertBtn" class="btn active font-weight-bold btn-primary btn-sm">
+                    ...
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- email newsletter -->
+<div class="modal fade commonModal" id="newletterModal" tabindex="-1" role="dialog" aria-labelledby="newletterModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="padding:18px 24px;">
+                <h3 class="modal-title" id="newletterModalTitle" style="font-size:24px;">...</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" style="font-size:24px;">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="newletterModalBody">
+                <div id="nlModalBodyText" class="py-3">...</div>
+                <input type="text" class="form-control" placeholder="abc@domain.com" id="subEmail">
+                <span class="text-muted h6">No spam. No bullshit. One click unsubscribe.</span>
+            </div>
+            <div class="modal-footer" id="newletterModalBtnCov"> 
+                <div class="btn active font-weight-bold btn-primary" id="confirmEmailBtn" style="width:150px;" onclick="confirmEmail();">
+                    Submit
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <div class="main-content">
+
+            <div class="container-fluid mt-3" id="warnAlertContainer" style="display:none;">
+                <div class="alert alert-warning fade show" role="alert">
+                    <span id="warnAlert"></span>
+                </div>
+            </div>
+
+            <div class="container-fluid mt-3" id="normalAlertContainer" style="display:none;">
+                <div class="alert alert-primary fade show" role="alert">
+                    <span id="normalAlert"></span>
+                </div>
+            </div>
+
+            <!-- BLOCK CONTENT -->
+            
+
+    <!-- TITLE -->
+    <div class="container-fluid">
+      <!-- Body -->
+      <div class="header-body" style="padding:18px 0;">
+        <div class="row align-items-end">
+          <div class="col">
+            <!-- Title -->
+            <h1 class="header-title" style="padding-bottom:10px;">
+              InstaBorrow
+            </h1>
+          </div>
+          <div class="col-auto">
+            <!-- User -->
+<div class="navbar-user">
+    <!-- Dropdown -->
+    <div class="dropdown">
+        <!-- Button trigger modal -->
+        <div class="walletBtnMetamaskIcon avatar" style="display:none;width:40px;height:40px;">
+            <img src="img/logos/metamask.svg" alt="..." class="avatar-img rounded-circle">
+        </div>
+        <div class="walletBtnCBIcon avatar" style="display:none;width:40px;height:40px;">
+            <img src="img/logos/coinbasewallet.svg" alt="..." class="avatar-img rounded-circle">
+        </div>
+        <button type="button" class="walletBtn btn btn-danger font-weight-bold active" data-toggle="modal" data-target="#ethClientModal">
+            Connect Wallet
+        </button>
+    </div>
+</div>
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .header-body -->
+    </div>
+
+    <!-- TOP BUTTONS -->
+    
+      <div class="container-fluid">
+        <div class="row text-right">
+          <div class="col p-3">
+            <div class="btn active font-weight-bold btn-primary cdpQuickBtn" onclick="showBorSen(this)">Borrow & Send</div>
+            <div class="btn active font-weight-bold btn-primary cdpQuickBtn" onclick="shareCDP()">Share CDP</div>
+            <div class="btn active font-weight-bold btn-primary cdpQuickBtn" onclick="getCDPAlerts()">Get Alerts</div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+
+    <!-- RATIO -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-xl">
+          <!-- Card -->
+          <div class="card">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col">
+                  <!-- Title -->
+                  <h4 class="card-title text-uppercase text-muted mb-3">
+                    Issue / Collateral ratio (%) <i class="fe fe-info font-weight-bold cursorPointer" onclick="showInfo(3);"></i>
+                  </h4>
+                  <div class="row align-items-center no-gutters">
+                    <div class="col-auto">
+                      <!-- Heading -->
+                      <span class="loader h1 mr-3 mb-0" id="icratio">
+                        
+                      </span>
+                    </div>
+                    <div class="col">
+                      <!-- Progress -->
+                      <div class="progress mr-3">
+                        <div class="progress-bar" id="icratioProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <span id="icrBadge" class="badge badge-secondary font-weight-bold" style="font-size:18px;">Status</span>
+                    </div>
+                  </div> <!-- / .row -->
+                </div>
+              </div> <!-- / .row -->
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+
+    <!-- BORROW / REPAY -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-xl">
+          <div class="row">
+            
+            <!-- DAI ACTS -->
+            <div class="col-12 col-lg-6">
+
+              <h2 class="card-title text-muted ml-3">
+                DEBT (DAI)
+                
+              </h2>
+
+              <!-- Card -->
+              <div class="card">
+                <div class="card-body">
+
+                  <div class="row align-items-center">
+                      <div style="cursor:pointer" class="col display-2 cdpTokenText textToCopy" id="DAIDebt" data-toggle="tooltip" data-placement="top" title="" data-original-title="..." data-clipboard-text="...">
+                        
+                        <div class="loader loader-lg mt-3"></div>
+                      </div>
+                      <img src="https://easwap.com/logos/dai.svg" alt="..." class="col-auto img-fluid ml-3 cdpTokenImg">
+                  </div>
+
+                  <div class="row text-right widthMaxContent cdpBtnCov">
+                    <div class="col">
+                      <div class="cdpBtn btn active font-weight-bold btn-primary btnDisable" onclick="showPayFree(this)" id="btnPayback">PAYBACK</div>
+                      <div class="h5 text-muted text-center py-2">Balance: <span id="balDAI">0</span></div>
+                    </div>
+                    
+                      <div class="col">
+                        <div class="cdpBtn btn active font-weight-bold btn-primary" onclick="showGenDep(this)" id="btnGenerate">GENERATE</div>
+                        <div class="h5 text-muted text-center py-2">Maximum: <span id="maxDAI">0</span></div>
+                      </div>
+                    
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            
+            <!-- ETH ACTS -->
+            <div class="col-12 col-lg-6">
+              
+              <h2 class="card-title text-muted ml-3">
+                COLLATERAL (ETH)
+                
+              </h2>
+
+              <!-- Card -->
+              <div class="card">
+                <div class="card-body">
+
+                  <div class="row align-items-center">
+                      <div style="cursor:pointer" class="col display-2 cdpTokenText textToCopy" id="ETHColl" data-toggle="tooltip" data-placement="top" title="" data-original-title="..." data-clipboard-text="...">
+                        <div class="loader loader-lg mt-3"></div>
+                      </div>
+                      <img src="https://easwap.com/logos/eth.svg" alt="..." class="col-auto img-fluid ml-3 cdpTokenImg">
+                  </div>
+
+                  <div class="row text-right widthMaxContent cdpBtnCov">
+                    
+                      <div class="col">
+                        <div class="cdpBtn btn active font-weight-bold btn-primary btnDisable" onclick="showPayFree(this)" id="btnWithdraw">WITHDRAW</div>
+                        <div class="h5 text-muted text-center py-2">Maximum: <span id="maxETH">0</span></div>
+                      </div>
+                    
+                    <div class="col">
+                      <div class="cdpBtn btn active font-weight-bold btn-primary" onclick="showGenDep(this)" id="btnDeposit">DEPOSIT</div>
+                      <div class="h5 text-muted text-center py-2">Balance: <span id="balETH">0</span></div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+            <script>
+              if ($(window).width() < 500) {
+                $(".cdpBtn").addClass("btn-sm").width("80px");
+              }
+            </script>
+
+          </div>
+        </div> <!-- / .row -->
+      </div>
+    </div> 
+
+    <!-- STAT BOX -->
+    <div class="container-fluid">
+      
+      <!-- CARDS -->
+      <div class="row">
+        <div class="col-12 col-lg-6 col-xl">
+              
+          <!-- Card -->
+          <div class="card">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col">
+
+                  <!-- Title -->
+                  <h4 class="card-title text-uppercase text-muted mb-3">
+                    <div class="row">
+                      <div class="col">CDP ID (<a href="#" id="mkrToolLink"><u>MakerScan</u></a>)</div>
+                      <i class="col-auto fe fe-info cursorPointer font-weight-bold" onclick="showInfo(4);"></i>
+                    </div>
+                  </h4>
+                  
+                  <!-- Heading -->
+                  <span class="h1 mb-0" id="CDPNum">
+                    <div class="loader mt-3"></div>
+                  </span>
+
+                </div>
+              </div> <!-- / .row -->
+
+            </div>
+          </div>
+
+        </div>
+        <div class="col-12 col-lg-6 col-xl">
+              
+          <!-- Card -->
+          <div class="card">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col">
+
+                  <!-- Title -->
+                  <h4 class="card-title text-uppercase text-muted mb-3">
+                    <div class="row">
+                      <div class="col">ACCRUED FEES (1.5%)</div>
+                      <i class="col-auto fe fe-info cursorPointer font-weight-bold" onclick="showInfo(10);"></i>
+                    </div>
+                  </h4>
+                  
+                  <!-- Heading -->
+                  <span class="h1 mb-0" id="accruedFee">
+                    
+                    <div class="loader mt-3"></div>
+                  </span>
+
+                </div>
+              </div> <!-- / .row -->
+
+            </div>
+          </div>
+
+        </div>
+        <div class="col-12 col-lg-6 col-xl">
+              
+          <!-- Card -->
+          <div class="card">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col">
+
+                  <h4 class="card-title text-uppercase text-muted mb-3">
+                    <div class="row">
+                      <div class="col">LIQUIDATION PRICE</div>
+                      <i class="col-auto fe fe-info cursorPointer font-weight-bold" onclick="showInfo(11);"></i>
+                    </div>
+                  </h4>
+                  
+                  <!-- Heading -->
+                  <span class="h1 mb-0" id="liquidPrice">
+                    
+                    <div class="loader mt-3"></div>
+                  </span>
+
+                </div>
+              </div> <!-- / .row -->
+
+            </div>
+          </div>
+
+        </div>
+        <div class="col-12 col-lg-6 col-xl">
+              
+          <!-- Card -->
+          <div class="card">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col">
+
+                  <h4 class="card-title text-uppercase text-muted mb-3">
+                    <div class="row">
+                      <div class="col">ETHEREUM PRICE</div>
+                      <i class="col-auto fe fe-info cursorPointer font-weight-bold" onclick="showInfo(12);"></i>
+                    </div>
+                  </h4>
+                  
+                  <!-- Heading -->
+                  <span class="h1 mb-0" id="ethPriceUSD">
+                    
+                    <div class="loader mt-3"></div>
+                  </span>
+
+                </div>
+              </div> <!-- / .row -->
+
+            </div>
+          </div>
+
+        </div>
+      </div> <!-- / .row -->
+
+    </div>
+
+    <!-- FAQs -->
+    <div class="container-fluid">
+      <div class="col-12 col-lg-10 col-xl-6 m-auto my-6" id="faqs">
+        
+        <!-- Header -->
+        <div class="header mt-md-5">
+          <div class="header-body">  
+            <!-- Pretitle -->
+            <h1 class="header-title display-3 text-center font-weight-bold mb-4">
+              Borrow FAQs
+            </h1>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="table-responsive mb-0">
+            <table class="table table-xl card-table">
+              <tbody class="list">
+                <tr class="faques">
+                  <td>
+                    What the heck is CDP?
+                  </td>
+                </tr>
+                <tr class="faqans">
+                  <td>
+                    CDP is Collateral Debt Position in full. A CDP helps in generating a specific amount of DAI stablecoin (USD pegged tokens) against the collateral (which is ETH currently) to lock up in the CDP to secure the loan i.e. the DAI you generated.
+                  </td>
+                </tr>
+                <tr class="faques">
+                  <td>
+                    What are the benefits of opening a CDP?
+                  </td>
+                </tr>
+                <tr class="faqans">
+                  <td>
+                    You can generate liquidity by generating DAI stablecoins without giving up ownerships of your collateral (in this case, your collateralised ETH) , making sure your CDP holds enough collateral to cover the value of the collateral ETH.
+                  </td>
+                </tr>
+                <tr class="faques">
+                  <td>
+                    How does it work?
+                  </td>
+                </tr>
+                <tr class="faqans">
+                  <td>
+                    Connect your wallet. Determine the amount of loan you want to borrow, then decide the amount of ETH you want to lock in the CDP, you generate the DAI stablecoins against the ETH you locked up, and spend them as you wish. You can pay back the DAI stablecoins when you no longer need the liquidity, together with stability price (which will be added to the overall debt), and then you can redeem the collateral you locked up.
+                  </td>
+                </tr>
+                <tr class="faques">
+                  <td>
+                    Is there any risk involved in creating a CDP?
+                  </td>
+                </tr>
+                <tr class="faqans">
+                  <td>
+                    Always make sure that the value of ETH locked up is always more than 150% of the DAI stablecoins that you’ve generated. Which means, you can only take DAI loan up to 66% of the total ETH collateral value in USD. If the value of the collateral comes near 66%, in this case you can add more collateral or pay back some of your debt. If the value of the issue / collateral ratio falls above 66% then your CDP will break i.e will be liquidated. This means that your collateral will be sold in order to cover the value of the DAI stablecoins you generated. Otherwise, any leftover collateral will be returned to your CDP, so you can redeem it.
+                  </td>
+                </tr>
+                <tr class="faques">
+                  <td>
+                    What are our fees?
+                  </td>
+                </tr>
+                <tr class="faqans">
+                  <td>
+                    At the moment, there are no platform fees for InstaDApp users. The only fee drawn is the gas fee needed to pay for the transaction on the Ethereum network and 1.5% stability fees paid in ETH to MakerDAO protocol. Note, that your wallet address must hold a certain amount of ETH in order to pay for the fees.
+                  </td>
+                </tr>
+                <tr class="faques">
+                  <td>
+                    How can I contact the support team?
+                  </td>
+                </tr>
+                <tr class="faqans">
+                  <td>
+                    You can reach out to us on <a href="https://twitter.com/instadapp" target="_blank">twitter</a> , <a href="https://t.me/instadapp" target="_blank">telegram</a> or by <a href="mailto:info@instadapp.io" target="_blank">email</a>.  Feedbacks and queries are always welcome.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEPOSIT & GENERATE MODAL -->
+    <div class="modal fade commonModal" id="depGenModal" tabindex="-1" role="dialog" aria-labelledby="depGenModal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" class="h1">&times;</span>
+            </button>
+
+            <div class="logoTextModalCov">
+              <div class="widthMaxContent m-auto">
+                <img src="https://easwap.com/logos/eth.svg" alt="..." class="img-fluid" style="height:100px;">
+                <img src="https://easwap.com/logos/dai.svg" alt="..." class="img-fluid" style="height:100px;">
+              </div>
+              <div class="mt-3 font-center modalBodyCov">
+                <span>I want to deposit</span>
+                <br>
+                <input type="number" class="modalInputBorrow" id="depositETH" placeholder="0.00">
+                <span>ETH</span>
+                <br>
+                <span>and generate</span>
+                <br>
+                <input type="number" class="modalInputBorrow" id="raiseDAI" placeholder="0.00">
+                <span>DAI</span>
+              </div>
+            </div>
+
+            <div class="text-center estimatedText">
+              Depositing <span class="badge badge-soft-secondary font-weight-bold"><span id="depETH">0</span> ETH</span>
+              and raising <span class="badge badge-soft-secondary font-weight-bold"><span id="raiDAI">0</span> DAI</span>
+              covering <span class="badge badge-soft-secondary font-weight-bold"><span class="estCollCovered">--</span>%</span> of your ETH collaterals
+              with the estimated liquidation price of <span class="badge badge-soft-secondary font-weight-bold">$<span class="estLiqRate">--</span>/ETH</span>
+            </div>
+
+            <div class="alert alert-danger fade show text-center m-0 mt-4 cdpWarnDanger" role="alert"></div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary active btn-lg btn-block font-weight-bold btnDisable transactBtn" onclick="transactDG(this)">TRANSACT</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAYBACK & WITHDRAW MODAL -->
+    <div class="modal fade commonModal" id="payFreeModel" tabindex="-1" role="dialog" aria-labelledby="payFreeModel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" class="h1">&times;</span>
+            </button>
+
+            <div class="logoTextModalCov">
+
+              <div class="widthMaxContent m-auto">
+                <img src="https://easwap.com/logos/dai.svg" alt="..." class="img-fluid" style="height:100px;">
+                <img src="https://easwap.com/logos/eth.svg" alt="..." class="img-fluid" style="height:100px;">
+              </div>
+
+              <div class="mt-3 font-center modalBodyCov">
+                <span>I want to payback</span>
+                <br>
+                <input type="number" class="modalInputBorrow" id="wipeDAI" placeholder="0.00">
+                <span>DAI</span>
+                <br>
+                <span>and withdraw</span>
+                <br>
+                <input type="number" class="modalInputBorrow" id="freeETH" placeholder="0.00">
+                <span>ETH</span>
+              </div>
+            </div>
+
+            <div class="text-center estimatedText">
+              Paying back <span class="badge badge-soft-secondary font-weight-bold"><span id="pbDAI">0</span> DAI</span>
+              and withdrawing <span class="badge badge-soft-secondary font-weight-bold"><span id="wdETH">0</span> ETH</span> 
+              covering <span class="badge badge-soft-secondary font-weight-bold"><span class="estCollCovered">--</span>%</span> of your ETH collaterals
+              with the estimated liquidation price of <span class="badge badge-soft-secondary font-weight-bold">$<span class="estLiqRate">--</span>/ETH</span>
+            </div>
+
+            <div class="text-center estimatedText">Fees: <span class="badge badge-soft-secondary font-weight-bold" id="paybackFees">0 ETH ($0)</span></div>
+
+            <div class="alert alert-danger fade show text-center m-0 mt-4 cdpWarnDanger" role="alert"></div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary active btn-lg btn-block font-weight-bold btnDisable transactBtn" onclick="transactPW(this)">TRANSACT</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BORROW & SEND MODAL -->
+    <div class="modal fade commonModal" id="genSendModel" tabindex="-1" role="dialog" aria-labelledby="payFreeModel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" class="h1">&times;</span>
+            </button>
+
+            <div class="logoTextModalCov">
+
+              <div class="widthMaxContent m-auto">
+                <img src="https://easwap.com/logos/dai.svg" alt="..." class="img-fluid" style="height:100px;">
+              </div>
+
+              <div class="mt-3 font-center modalBodyCov">
+                <span>I want to borrow</span>
+                <br>
+                <input type="number" class="modalInputBorrow" id="genDAI" placeholder="0.00">
+                <span>DAI</span>
+                <br>
+                <span>and send to</span>
+                <br>
+                <input type="text" class="modalInputBorrow borsendInput" id="sendToAddr" placeholder="0xd8db....e592">
+              </div>
+            </div>
+
+            <div class="text-center estimatedText">
+              Borrowing <span class="badge badge-soft-secondary font-weight-bold"><span id="borDAI">0</span> DAI</span>
+              covering <span class="badge badge-soft-secondary font-weight-bold"><span class="estCollCovered">--</span>%</span> of your ETH collaterals
+              with the estimated liquidation price of <span class="badge badge-soft-secondary font-weight-bold">$<span class="estLiqRate">--</span>/ETH</span>
+            </div>
+
+            <div class="alert alert-danger fade show text-center m-0 mt-4 cdpWarnDanger" role="alert"></div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary active btn-lg btn-block font-weight-bold btnDisable transactBtn" onclick="transactBS(this)">TRANSACT</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <span id="mainMakerCDP" hidden>0x448a5065aebb8e423f0896e6c5d525c040f59af3</span>
+    <span id="mainInstaMaker" hidden>0x3A306a399085F3460BbcB5b77015Ab33806A10d5</span>
+
+    <span id="kovanMakerCDP" hidden>0xa71937147b55deb8a530c7229c442fd3f31b7db2</span>
+    <span id="kovanInstaMaker" hidden>0x07d4C2D5C8854A7bAF2aeCD9E96AACc037491E77</span>
+
+
+
+            <div class="container-fluid">
+
+    <!-- SOCIAL -->
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-10 col-xl-8 my-4">
+        <div class="row justify-content-center">
+            <a href="https://twitter.com/instadapp" target="_blank" class="avatar mx-2">
+                <img src="img/logos/black/twitter.svg" alt="..." class="avatar-img rounded-circle">
+            </a>
+            <a href="https://t.me/instadapp" target="_blank" class="avatar mx-2">
+                <img src="img/logos/black/telegram.png" alt="..." class="avatar-img rounded-circle">
+            </a>
+            <a href="https://medium.com/instadapp" target="_blank" class="avatar mx-2">
+                <img src="img/logos/black/blog.png" alt="..." class="avatar-img rounded-circle">
+            </a>
+            <a href="https://github.com/InstaDApp/InstaContract" target="_blank" class="avatar mx-2">
+                <img src="img/logos/black/github.svg" alt="..." class="avatar-img rounded-circle">
+            </a>
+            <a href="mailto:info@instadapp.io" target="_blank" class="avatar mx-2">
+                <img src="img/logos/black/email.png" alt="..." class="avatar-img rounded-circle">
+            </a>
+        </div> <!-- / .row -->
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-10 col-xl-8 my-4">
+        <div class="row justify-content-center">
+            <p class="text-muted">
+            @ <span id="currentYear">20xx</span> InstaDApp. All rights reserved.
+            </p>
+        </div> <!-- / .row -->
+        </div>
+    </div>
+
+    <script>
+        var d = new Date();
+        var n = d.getFullYear();
+        document.getElementById("currentYear").innerHTML = n;
+    </script>
+
+</div>
+
+
+        </div> <!-- / .main-content -->
+
+        <!-- JAVASCRIPT
+================================================== -->
+<!-- Libs JS -->
+<!-- script JQuery -->
+<script src="libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="libs/chart.js/dist/Chart.min.js"></script>
+<script src="libs/chart.js/Chart.extension.min.js"></script>
+<script src="libs/highlightjs/highlight.pack.min.js"></script>
+<script src="libs/flatpickr/dist/flatpickr.min.js"></script>
+<script src="libs/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+<script src="libs/list.js/dist/list.min.js"></script>
+<script src="libs/quill/dist/quill.min.js"></script>
+<script src="libs/dropzone/dist/min/dropzone.min.js"></script>
+<script src="libs/select2/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+
+<!-- Theme JS -->
+<script src="js/theme.min.js"></script>
+
+<!-- homepage -->
+<script>
+var infoObj = {};
+var clipboard = new ClipboardJS('.textToCopy');
+var scrollto = window.location.hash.substr(1);
+
+init();
+
+// onpage scroll by clicking
+$("#faqsLink").click(function(e) {
+    e.preventDefault();
+    scrollToFaqs();
+});
+
+// FAQs -->
+$(".faques").click(function(e) {
+    $(".faqans").hide();
+    $(".faques").css('font-weight', 'normal');
+    $(this).next().show('slow');
+    $(this).css('font-weight', 'bold');
+});
+
+// onpage guides -->    
+$.getJSON('/content/guide', function(doc) {
+    infoObj = doc;
+});
+
+function init() {
+    // initializing click to copy numbers -->
+    clipboard.on('success', function(e) {
+        popAlert(
+            'Copied!',
+            `Number (${e.text}) is copied to your clipboard.`
+        );
+        e.clearSelection();
+    });
+    clipboard.on('error', function(e) {
+        popAlert(
+            'Failed!',
+            `Error while copying the number on your clipboard. Please, copy it manually: ${e.text}`
+        );
+    });
+
+    // email subscribed -->
+    if (getUrlParameter('subscribed')) {
+        popAlert(
+            'Yay! subscription successful.',
+            'Thank you for showing your interest. You can reach out to us on <a href="https://twitter.com/instadapp" target="_blank">twitter</a>, <a href="https://t.me/instadapp" target="_blank">telegram</a> or simply reply to this email. Feedbacks and queries are always welcome.'
+        );
+    }
+    $('.ytIframe').height(0.5625 * $('.ytIframe').width());
+
+    // onpage scroll by URL #    
+    if (scrollto == "faqs") {
+        scrollToFaqs();
+    }
+}
+
+function scrollToFaqs() {
+    $('html, body').animate({
+        scrollTop: $(`#faqs`).offset().top
+    }, 1000);
+}
+
+// URL Query Params -->
+// get details from URL query parameters
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
+
+// alerts modal -->
+function popAlert(title, body, btnText, btnFunc) {
+    // hide all other modals
+    $('.commonModal').modal('hide');
+
+    // populating and showing alert model
+    $("#popAlertTitle").html(title);
+    $("#popAlertBody").html(body);
+    if (btnText) {
+        $("#popAlertBtn").html(btnText);
+        $("#popAlertBtn").attr('onclick', btnFunc);
+        $("#popAlertBtnCov").show();
+    } else {
+        $("#popAlertBtnCov").hide();
+    }
+    $("#popAlert").modal('show');
+}
+
+// newsletter modal -->
+function emailModal(title, body, btnText) {
+    if (!title) {
+        title = "InstaDApp Newsletter";
+    }
+    if (!body) {
+        body = "The best way to stay connected with InstaDApp. Please submit your email address.";
+    }
+    if (!btnText) {
+        btnText = "SUBMIT";
+    }
+    // some extra activity
+    $('.modal').modal('hide');
+    // populating and showing alert model
+    $("#newletterModalTitle").html(title);
+    $("#nlModalBodyText").html(body);
+    $("#newletterModalBtn").html(btnText);
+    // show the modal
+    $("#newletterModal").modal('show');
+}
+
+function confirmEmail() {
+    var email = $('#subEmail').val();
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var reBool = re.test(String(email).toLowerCase());
+    if (reBool) {
+        $("#confirmEmailBtn").addClass("is-loading");
+        $.getJSON(`/newsletter/confirm?email=${email}`, function(response) {
+            console.log(response.status);
+            if (response.status) {
+                $('#subEmail').val('');
+                popAlert(
+                    'Thanks for signing up :)',
+                    "A verification email had been sent to your email address. Please confirm it to complete the process. Check your SPAM box if you haven't received a confirmation."
+                );
+            } else {
+                alert("Something went wrong. Please check your email address.");
+            }
+            $("#confirmEmailBtn").removeClass("is-loading");
+        });
+    } else {
+        alert("Invalid email");
+    }
+}
+
+function showInfo(num) {
+    var i = infoObj[num];
+    popAlert(i.title, i.body);
+}
+
+// clean never ending decimal number -->
+function cleanDecimal(num, power) {
+    var MUL_DIV = 100;
+    if (power) {
+        MUL_DIV = 10**power;
+    }
+    return (Math.floor(Number(num) * MUL_DIV) / MUL_DIV);
+}
+
+// dividing with 10**18 and cleaning decimals -->
+function d18c(num, clean) {
+    return cleanDecimal(num / 10**18, clean);
+}
+
+// get last path of URL for unique identifying  -->
+function lastPath() {
+    var pathArr = window.location.pathname.split('/').filter(function(v){return v!==''});
+    return pathArr[pathArr.length - 1];
+}
+
+// alert box -->
+function showNormalAlert(html) {
+    $("#warnAlertContainer").hide();
+    $("#normalAlert").html(html);
+    $("#normalAlertContainer").show();
+}
+
+function showWarnAlert(html) {
+    $("#normalAlertContainer").hide();
+    $("#warnAlert").html(html);
+    $("#warnAlertContainer").show();
+}
+
+// removing loaders with dots -->
+function loaderDots(text) {
+    $(".loader")
+        .removeClass('loader')
+        .removeClass('loader-sm')
+        .removeClass('loader-lg')
+        .text(text);
+}
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-72808093-17"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-72808093-17');
+</script>
+<script>
+var _rollbarConfig = {
+    accessToken: "c109bb69cf66483dbbf4bae02037c77e",
+    captureUncaught: true,
+    captureUnhandledRejections: true,
+    payload: {
+        environment: "production"
+    }
+};
+// Rollbar Snippet
+!function(r){function e(n){if(o[n])return o[n].exports;var t=o[n]={exports:{},id:n,loaded:!1};return r[n].call(t.exports,t,t.exports,e),t.loaded=!0,t.exports}var o={};return e.m=r,e.c=o,e.p="",e(0)}([function(r,e,o){"use strict";var n=o(1),t=o(4);_rollbarConfig=_rollbarConfig||{},_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://cdnjs.cloudflare.com/ajax/libs/rollbar.js/2.4.6/rollbar.min.js",_rollbarConfig.async=void 0===_rollbarConfig.async||_rollbarConfig.async;var a=n.setupShim(window,_rollbarConfig),l=t(_rollbarConfig);window.rollbar=n.Rollbar,a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,l)},function(r,e,o){"use strict";function n(r){return function(){try{return r.apply(this,arguments)}catch(r){try{console.error("[Rollbar]: Internal error",r)}catch(r){}}}}function t(r,e){this.options=r,this._rollbarOldOnError=null;var o=s++;this.shimId=function(){return o},"undefined"!=typeof window&&window._rollbarShims&&(window._rollbarShims[o]={handler:e,messages:[]})}function a(r,e){if(r){var o=e.globalAlias||"Rollbar";if("object"==typeof r[o])return r[o];r._rollbarShims={},r._rollbarWrappedError=null;var t=new p(e);return n(function(){e.captureUncaught&&(t._rollbarOldOnError=r.onerror,i.captureUncaughtExceptions(r,t,!0),i.wrapGlobals(r,t,!0)),e.captureUnhandledRejections&&i.captureUnhandledRejections(r,t,!0);var n=e.autoInstrument;return e.enabled!==!1&&(void 0===n||n===!0||"object"==typeof n&&n.network)&&r.addEventListener&&(r.addEventListener("load",t.captureLoad.bind(t)),r.addEventListener("DOMContentLoaded",t.captureDomContentLoaded.bind(t))),r[o]=t,t})()}}function l(r){return n(function(){var e=this,o=Array.prototype.slice.call(arguments,0),n={shim:e,method:r,args:o,ts:new Date};window._rollbarShims[this.shimId()].messages.push(n)})}var i=o(2),s=0,d=o(3),c=function(r,e){return new t(r,e)},p=d.bind(null,c);t.prototype.loadFull=function(r,e,o,t,a){var l=function(){var e;if(void 0===r._rollbarDidLoad){e=new Error("rollbar.js did not load");for(var o,n,t,l,i=0;o=r._rollbarShims[i++];)for(o=o.messages||[];n=o.shift();)for(t=n.args||[],i=0;i<t.length;++i)if(l=t[i],"function"==typeof l){l(e);break}}"function"==typeof a&&a(e)},i=!1,s=e.createElement("script"),d=e.getElementsByTagName("script")[0],c=d.parentNode;s.crossOrigin="",s.src=t.rollbarJsUrl,o||(s.async=!0),s.onload=s.onreadystatechange=n(function(){if(!(i||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){s.onload=s.onreadystatechange=null;try{c.removeChild(s)}catch(r){}i=!0,l()}}),c.insertBefore(s,d)},t.prototype.wrap=function(r,e,o){try{var n;if(n="function"==typeof e?e:function(){return e||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._rollbar_wrapped&&(r._rollbar_wrapped=function(){o&&"function"==typeof o&&o.apply(this,arguments);try{return r.apply(this,arguments)}catch(o){var e=o;throw e&&("string"==typeof e&&(e=new String(e)),e._rollbarContext=n()||{},e._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=e),e}},r._rollbar_wrapped._isWrap=!0,r.hasOwnProperty))for(var t in r)r.hasOwnProperty(t)&&(r._rollbar_wrapped[t]=r[t]);return r._rollbar_wrapped}catch(e){return r}};for(var u="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleUnhandledRejection,captureEvent,captureDomContentLoaded,captureLoad".split(","),f=0;f<u.length;++f)t.prototype[u[f]]=l(u[f]);r.exports={setupShim:a,Rollbar:p}},function(r,e){"use strict";function o(r,e,o){if(r){var t;"function"==typeof e._rollbarOldOnError?t=e._rollbarOldOnError:r.onerror&&!r.onerror.belongsToShim&&(t=r.onerror,e._rollbarOldOnError=t);var a=function(){var o=Array.prototype.slice.call(arguments,0);n(r,e,t,o)};a.belongsToShim=o,r.onerror=a}}function n(r,e,o,n){r._rollbarWrappedError&&(n[4]||(n[4]=r._rollbarWrappedError),n[5]||(n[5]=r._rollbarWrappedError._rollbarContext),r._rollbarWrappedError=null),e.handleUncaughtException.apply(e,n),o&&o.apply(r,n)}function t(r,e,o){if(r){"function"==typeof r._rollbarURH&&r._rollbarURH.belongsToShim&&r.removeEventListener("unhandledrejection",r._rollbarURH);var n=function(r){var o,n,t;try{o=r.reason}catch(r){o=void 0}try{n=r.promise}catch(r){n="[unhandledrejection] error getting `promise` from event"}try{t=r.detail,!o&&t&&(o=t.reason,n=t.promise)}catch(r){t="[unhandledrejection] error getting `detail` from event"}o||(o="[unhandledrejection] error getting `reason` from event"),e&&e.handleUnhandledRejection&&e.handleUnhandledRejection(o,n)};n.belongsToShim=o,r._rollbarURH=n,r.addEventListener("unhandledrejection",n)}}function a(r,e,o){if(r){var n,t,a="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(n=0;n<a.length;++n)t=a[n],r[t]&&r[t].prototype&&l(e,r[t].prototype,o)}}function l(r,e,o){if(e.hasOwnProperty&&e.hasOwnProperty("addEventListener")){for(var n=e.addEventListener;n._rollbarOldAdd&&n.belongsToShim;)n=n._rollbarOldAdd;var t=function(e,o,t){n.call(this,e,r.wrap(o),t)};t._rollbarOldAdd=n,t.belongsToShim=o,e.addEventListener=t;for(var a=e.removeEventListener;a._rollbarOldRemove&&a.belongsToShim;)a=a._rollbarOldRemove;var l=function(r,e,o){a.call(this,r,e&&e._rollbar_wrapped||e,o)};l._rollbarOldRemove=a,l.belongsToShim=o,e.removeEventListener=l}}r.exports={captureUncaughtExceptions:o,captureUnhandledRejections:t,wrapGlobals:a}},function(r,e){"use strict";function o(r,e){this.impl=r(e,this),this.options=e,n(o.prototype)}function n(r){for(var e=function(r){return function(){var e=Array.prototype.slice.call(arguments,0);if(this.impl[r])return this.impl[r].apply(this.impl,e)}},o="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleUnhandledRejection,_createItem,wrap,loadFull,shimId,captureEvent,captureDomContentLoaded,captureLoad".split(","),n=0;n<o.length;n++)r[o[n]]=e(o[n])}o.prototype._swapAndProcessMessages=function(r,e){this.impl=r(this.options);for(var o,n,t;o=e.shift();)n=o.method,t=o.args,this[n]&&"function"==typeof this[n]&&("captureDomContentLoaded"===n||"captureLoad"===n?this[n].apply(this,[t[0],o.ts]):this[n].apply(this,t));return this},r.exports=o},function(r,e){"use strict";r.exports=function(r){return function(e){if(!e&&!window._rollbarInitialized){r=r||{};for(var o,n,t=r.globalAlias||"Rollbar",a=window.rollbar,l=function(r){return new a(r)},i=0;o=window._rollbarShims[i++];)n||(n=o.handler),o.handler._swapAndProcessMessages(l,o.messages);window[t]=n,window._rollbarInitialized=!0}}}}]);
+// End Rollbar Snippet
+</script>
+
+        <!-- WEB3 SCRIPTS -->
+        <script src="https://cdn.jsdelivr.net/npm/web3@0.20.7/dist/web3.min.js"></script>
+
+        
+    <!-- COMMON DAPP SCRIPTS -->
+    <script src="js/dapp/ethClient.v8.js"></script>
+    <script src="js/abi/erc20.js"></script>
+
+    <!-- INSTA MAKER SCRIPTS -->
+    <script src="js/abi/makercdp.js"></script>
+    <script src="js/abi/instaBorrow.js"></script>
+    <script src="js/dapp/borrow/variables.v2.js"></script>
+    <script src="js/dapp/borrow/readOp.v4.js"></script>
+    <script src="js/dapp/borrow/depositNgenerate.v2.js"></script>
+    <script src="js/dapp/borrow/paybackNwithdraw.v2.js"></script>
+    <script src="js/dapp/borrow/borrowNsend.v2.js"></script>
+    <script src="js/dapp/borrow/shareCDP.js"></script>
+    <script src="js/dapp/borrow/cdpAlerts.v3.js"></script>
+    <script src="js/dapp/borrow/chaff.v3.js"></script>
+
+
+    </body>
+</html>
